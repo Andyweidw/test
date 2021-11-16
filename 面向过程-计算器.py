@@ -16,21 +16,21 @@ def calc_GUI():
 
 #进行计算
 def calc_data():
-    list=[]
+    list=[] #设置一个空列表
     x = int(input("请输入数字"))
     y = int(input("请输入数字"))
 
     # 输入运算符号
     z = int(input('请输入编号：'))
-    list.append(x)
-    list.append(y)
-    list.append(z)
+    list.append(x) #往列表插入x
+    list.append(y) #往列表插入y
+    list.append(z) #往列表插入z
     return list
 
 
 
 #输出结果
-def calc_result(x,y,z):
+def calc_result(x,y,z): #调用第一个方法中的X,Y,Z参数
 # 判断运算符号
     if (z == 1):
         jieguo = x + y
@@ -50,6 +50,8 @@ def calc_result(x,y,z):
 if __name__ == '__main__':
     list=[]
     calc_GUI()
+    #拿出calc_data里面的列表数据
     list=calc_data()
+    #方法调用list中的三个数值
     calc_result(list[0],list[1],list[2])
 

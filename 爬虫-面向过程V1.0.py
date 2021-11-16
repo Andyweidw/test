@@ -4,9 +4,8 @@ from lxml import etree
 
 #设置3个方法
 #获取页面信息
-def get_page():
+def get_page(url):
 #输入URL
-    url = "http://www.51testing.com/html/90/category-catid-90.html"
     #发送请求
     response=requests.get(url)
     #print(response)
@@ -34,7 +33,9 @@ def get_element(content):
         # 打印元素
         # print(i,ele)
         # listen.append(str(i)+ele+"\n")
-        tmp=tmp+str(i)+ele+"\n"
+        #去除掉空格
+        ele = ''.join(ele.split())
+        tmp=tmp+str(i)+ele+"\n"+"\n"
     # print(listen)
     return tmp
 
@@ -48,7 +49,8 @@ def save_page(listencot):
     file.close()
 
 if __name__ == '__main__':
-    listc=[]
-    content=get_page()
+    for i in range(1,3)
+    url = "http://www.51testing.com/html/90/category-catid-90-page-2.html"
+    content=get_page(url)
     listc=get_element(content)
     save_page(listc)

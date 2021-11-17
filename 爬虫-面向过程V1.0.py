@@ -10,6 +10,7 @@ def get_page(url):
     response=requests.get(url)
     #print(response)
     #获取网站编码格式
+
     code=response.apparent_encoding
     #print(code)
     #设置网站编码格式
@@ -22,7 +23,7 @@ def get_page(url):
 def get_element(content):
     #d定义一个空列表存储元素内容
     # listen=[]
-    #改成字符串拼接
+    #改成字符串拼接，设置一个空字符串
     tmp=""
     # 将页面转化成dom格式
     doc = etree.HTML(content)

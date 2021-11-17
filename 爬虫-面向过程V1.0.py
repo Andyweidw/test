@@ -3,7 +3,7 @@ import requests
 from lxml import etree
 
 #设置3个方法
-#获取页面信息
+#获取页面信息，直接调用URL参数进行配置
 def get_page(url):
 #输入URL
     #发送请求

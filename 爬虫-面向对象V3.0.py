@@ -3,14 +3,14 @@ import requests
 from lxml import etree
 
 #设置3个方法
-#获取页面信息
-def get_page():
+#获取页面信息，直接调用URL参数进行配置
+def get_page(url):
 #输入URL
-    url = "http://www.51testing.com/html/90/category-catid-90.html"
     #发送请求
     response=requests.get(url)
     #print(response)
     #获取网站编码格式
+
     code=response.apparent_encoding
     #print(code)
     #设置网站编码格式
@@ -23,7 +23,7 @@ def get_page():
 def get_element(content):
     #d定义一个空列表存储元素内容
     # listen=[]
-    #改成字符串拼接
+    #改成字符串拼接，设置一个空字符串
     tmp=""
     # 将页面转化成dom格式
     doc = etree.HTML(content)
@@ -34,21 +34,30 @@ def get_element(content):
         # 打印元素
         # print(i,ele)
         # listen.append(str(i)+ele+"\n")
-        tmp=tmp+str(i)+ele+"\n"
-    # print(listen)
+        #去除掉空格
+        ele = ''.join(ele.split())
+        tmp=tmp+str(i)+ele+"\n"+"\n"
+    print(tmp)
     return tmp
 
 #保存页面元素
 def save_page(listencot):
     # 创建文件
-    file = open('文件.txt', 'w')
+    file = open('文件.txt', 'a')
     # 写入内容
     file.write(str(listencot) + '\n')
     # 保存关闭文件
     file.close()
 
 if __name__ == '__main__':
-    listc=[]
-    content=get_page()
-    listc=get_element(content)
-    save_page(listc)
+    for i in range(1,3):
+        #如果是首页
+        if i==1:
+            url="http://www.51testing.com/html/90/category-catid-90.html"
+        else:
+            url = "http://www.51testing.com/html/90/category-catid-90-page-"+str(i)+".html"
+        #打印页码
+        print("第",i,"页")
+        content=get_page(url)
+        listc=get_element(content)
+        save_page(listc)
